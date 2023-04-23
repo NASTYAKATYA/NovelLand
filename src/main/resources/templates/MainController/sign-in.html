@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/sign.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/sign-in-media.css}">
+    <title>Вход|НОВЕЛЛЭНД</title>
+</head>
+<body>
+    <div class="container">
+        <div class="main col-12">
+            <div class="logo">
+                <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            </div>
+            <div class="form-box">
+                <form action="" method="post">
+                    <h2>ВХОД В НОВЕЛЛЭНД</h2>
+                    <div class="inputbox">
+                        <input type="text" id="username" name="username"required>
+                        <label for="username">Имя пользователя</label>
+                    </div>
+                    <div class="inputbox">
+                        <input type="password" id="password" name="password"required>
+                        <label for="password">Пароль</label>
+                    </div>
+                    <button type="submit">Войти</button>
+                    <div class="info">
+                        <a href="/sign-up">Зарегистрироваться</a>
+                    </div>
+            </form>
+        </div>
+            <div class="vector">
+                <img class="vector1" th:src="@{/svg/Vector1.svg}" alt="">
+            </div>
+            <div class="vector">
+                <img class="vector2" th:src="@{/svg/Vector2.svg}" alt="">
+            </div>
+        </div>
+        <div class="error" th:if="${(param.error != null)}"><a>Неправильное имя пользователя или пароль</a></div>
+    </div>
+</body>
+</html>

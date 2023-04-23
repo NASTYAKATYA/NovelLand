@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Novel</title>
+</head>
+<body>
+<form action="" method="post">
+    <label for="novelName">Название новеллы:</label>
+    <input type="text" id="novelName" name="name" required>
+    <br><br>
+    <!--    https://demo.mobiscroll.com/javascript/select/multiple-select потом посмотреть-->
+    <label for="genres">Жанры:</label>
+    <select id="genres" name="genres" multiple required>
+        <option th:each="genre : ${allGenres}" th:value="${genre.getId()}" th:text="${genre.getName()}"></option>
+    </select>
+    <br><br>
+    <label for="novelDescription">Описание:</label>
+    <input type="text" id="novelDescription" name="description" required>
+    <br><br>
+    <input type="submit" value="Создать новеллу">
+</form>
+</body>
+</html>

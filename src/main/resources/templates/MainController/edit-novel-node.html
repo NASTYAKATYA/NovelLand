@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit novel node</title>
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+  <label for="novelName">Название сцены:</label>
+  <input type="text" id="novelName" name="name" required th:value="${novelNode.getName()}">
+  <br><br>
+  <label for="content">Контент сцены:</label>
+  <input type="text" id="content" name="content" required th:value="${novelNode.getContent()}">
+  <br><br>
+  <div id="options">
+    <div id="addMoreOption" style="cursor: pointer">Добавить выбор</div>
+  </div>
+  <br><br>
+  <div>
+    <img th:if="${novelNode.backgroundImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.backgroundImage.getId()}" alt="bi" style="height: 20px; width: 20px;">
+    <img th:if="${novelNode.backgroundImage == null}" th:src="@{/img/default_background.png}" alt="backgroundImage" style="height: 20px; width: 20px;">
+    <label for="backgroundImage">Фоновая картинка: </label>
+    <input type="file" id="backgroundImage" name="backgroundImage" accept="image/png, image/jpeg">
+  </div>
+  <br><br>
+  <div>
+    <img th:if="${novelNode.characterImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.characterImage.getId()}" alt="ci" style="height: 20px; width: 20px;">
+    <label for="characterImage">Картинка персонажа: </label>
+    <input type="file" id="characterImage" name="characterImage" accept="image/png, image/jpeg">
+  </div>
+  <br><br>
+  <input type="submit" name="save" value="Сохранить сцену">
+  <input th:if="${!novelNode.isStart()}" type="submit" name="delete" value="Удалить сцену">
+</form>
+<script>
+  /*<![CDATA[*/
+  let optionsDiv = document.getElementById('options');
+  let addMoreOption = document.getElementById('addMoreOption');
+  let childrenNovelNodes = JSON.parse('[[${childrenNovelNodesJson}]]'.replace(/&quot;/g, '\"'));
+  let novelNode = JSON.parse('[[${novelNodeJson}]]'.replace(/&quot;/g, '\"'));
+  let selectedChildrenIds = JSON.parse('[[${selectedChildrenIdsJson}]]'.replace(/&quot;/g, '\"'));
+
+  addMoreOption.addEventListener('click', function (event) {
+    optionsDiv.appendChild(createOptionDiv(null, ''));
+  });
+
+  function init() {
+    novelNode.options.forEach(el => {
+      optionsDiv.appendChild(createOptionDiv(el.id, el.value));
+    });
+  }
+
+  function removeOptionDiv(event) {
+    let optionDiv = event.target.parentNode;
+    if (optionsDiv.children.length > 2) {
+      optionsDiv.removeChild(optionDiv);
+    }
+  }
+
+  function createOptionDiv(optionId, optionValue) {
+    let optionDiv = document.createElement('div');
+    let deleteDiv = document.createElement('div');
+    let hiddenInput = document.createElement('input');
+    let valueInput = document.createElement('input');
+    let childLabel = document.createElement('label');
+    let childSelect = document.createElement('select');
+
+    deleteDiv.onclick = removeOptionDiv;
+    deleteDiv.style.cssText = 'cursor: pointer;';
+    deleteDiv.textContent = 'Убрать выбор'
+
+    if (optionId != null) {
+      hiddenInput.type = 'hidden';
+      hiddenInput.name='optionIds[]';
+      hiddenInput.value=optionId;
+    }
+
+    valueInput.type = 'text';
+    valueInput.name='optionValues[]';
+    valueInput.value=optionValue;
+    valueInput.required = true;
+
+    childLabel.textContent = 'Выбрать дочерний сценарий:';
+
+    childSelect.name = 'childrenIds[]';
+
+    let defaultChild = document.createElement('option');
+    defaultChild.value = '-1';
+    defaultChild.text = 'Выбрать ...';
+    childSelect.appendChild(defaultChild);
+
+    for (let i = 0; i < childrenNovelNodes.length; i++) {
+      let childOption = document.createElement('option');
+      childOption.value = childrenNovelNodes[i].id;
+      childOption.text = childrenNovelNodes[i].name;
+      childSelect.appendChild(childOption);
+      if (optionId != null) {
+        if (selectedChildrenIds.find(el => (el.first == optionId && el.second == childrenNovelNodes[i].id)) != undefined) {
+          childOption.selected = true;
+        }
+      }
+    }
+
+    optionDiv.appendChild(deleteDiv);
+    if (optionId != null) {
+      optionDiv.appendChild(hiddenInput);
+    }
+    optionDiv.appendChild(valueInput);
+    optionDiv.appendChild(childLabel);
+    optionDiv.appendChild(childSelect);
+    return optionDiv;
+  }
+
+  init();
+  /*]]>*/
+</script>
+</body>
+</html>

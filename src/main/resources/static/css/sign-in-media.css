@@ -1,0 +1,200 @@
+@media (min-width: 576px) {
+    .container {
+    max-width: 540px;
+    }
+    h2{
+    font-size: 1.1em;
+    padding: 0;
+    }
+    .main.col-12{
+    width: 325px;
+    height: 275px;
+    }
+    .form-box{
+    width: 325px;
+    height: 275px;
+    font-size: .8em;
+    }
+    .error{
+    width: 325px;
+    height: 35px;
+    font-size: .8em;
+    }
+    .icon{
+    width: 30%;
+    }
+    .inputbox{
+    width: 265px;
+    }
+    .inputbox label{
+    font-size: 0.8em;
+    }
+    .inputbox input{
+    font-size: 0.8em;
+    height: 35px;
+    }
+    .info{
+    font-size: .8em;
+    padding: 5px 0 5px;
+    }
+    button{
+    height: 35px;
+    font-size: 0.8em;
+    }
+    .vector1{
+    width: 300px;
+    }
+    .vector2{
+    width: 600px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+    max-width: 720px;
+    }
+    h2{
+    font-size: 1.25em;
+    padding: 5px 0 5px;
+    }
+    .main.col-12{
+    width: 350px;
+    height: 300px;
+    }
+    .form-box{
+    width: 350px;
+    height: 300px;
+    }
+    .error{
+    width: 350px;
+    height: 35px;
+    font-size: .8em;
+    }
+    .icon{
+    width: 35%;
+    }
+    .inputbox{
+    width: 280px;
+    }
+    .inputbox label{
+    font-size: 0.9em;
+    }
+    .inputbox input{
+    font-size: 0.9em;
+    height: 35px;
+    }
+    .info{
+    font-size: .8em;
+    padding: 5px 0 5px;
+    }
+    button{
+    height: 35px;
+    font-size: 0.9em;
+    }
+    .vector1{
+    width: 360px;
+    }
+    .vector2{
+    width: 670px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+    max-width: 960px;
+    }
+    h2{
+    font-size: 1.35em;
+    padding: 13px 0 13px;
+    }
+    .main.col-12{
+    width: 375px;
+    height: 325px;
+    }
+    .form-box{
+    width: 375px;
+    height: 325px;
+    }
+    .error{
+    width: 375px;
+    height: 40px;
+    font-size: .9em;
+    }
+    .icon{
+    width: 40%;
+    }
+    .inputbox{
+    width: 295px;
+    }
+    .inputbox label{
+    font-size: 1em;
+    }
+    .inputbox input{
+    font-size: 1em;
+    height: 40px;
+    }
+    .info{
+    font-size: .9em;
+    padding: 5px 0 5px;
+    }
+    button{
+    height: 40px;
+    font-size: 1em;
+    }
+    .vector1{
+    width: 370px;
+    }
+    .vector2{
+    width: 680px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+    max-width: 1140px;
+    }
+    h2{
+    font-size: 1.5em;
+    padding: 15px 0 15px;
+    }
+    .main.col-12{
+    width: 400px;
+    height: 350px;
+    }
+    .form-box{
+    width: 400px;
+    height: 350px;
+    }
+    .error{
+    width: 400px;
+    height: 40px;
+    font-size: 1em;
+    }
+    .icon{
+    width: 40%;
+    }
+    .inputbox{
+    width: 310px;
+    }
+    .inputbox label{
+    font-size: 1em;
+    }
+    .inputbox input{
+    font-size: 1em;
+    height: 40px;
+    }
+    .info{
+    font-size: 1em;
+    padding: 10px 0 10px;
+    }
+    button{
+    height: 40px;
+    font-size: 1.25em;
+    }
+    .vector1{
+    width: 377px;
+    }
+    .vector2{
+    width: 688px;
+    }
+}
