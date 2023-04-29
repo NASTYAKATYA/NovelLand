@@ -40,6 +40,7 @@
     button{
     height: 35px;
     font-size: 0.8em;
+    margin-top: 5px;
     }
     .vector1{
     width: 300px;
@@ -90,6 +91,7 @@
     button{
     height: 35px;
     font-size: 0.9em;
+    margin-top: 5px;
     }
     .vector1{
     width: 360px;
@@ -140,6 +142,7 @@
     button{
     height: 40px;
     font-size: 1em;
+    margin-top: 5px;
     }
     .vector1{
     width: 370px;
@@ -190,6 +193,7 @@
     button{
     height: 40px;
     font-size: 1.25em;
+     margin-top: 10px;
     }
     .vector1{
     width: 377px;

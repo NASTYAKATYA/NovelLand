@@ -11,8 +11,7 @@
     background-position: center;
     background: #FDFDFD;
 }
-nav{
-    display: flex;
+.head{
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -27,7 +26,11 @@ h2{
     padding: 0;
     display: flex;
     align-items: center
-
+}
+.list.col-1{
+    padding: 0;
+    display: flex;
+    align-items: center
 }
 a{
     text-decoration: none;
@@ -35,25 +38,16 @@ a{
     padding: 10px 20px;
     font-weight: bold;
     font-size: 20px;
-
-}
-a:hover{
-    color: #8758FF;
 }
 .create{
     background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
     border-radius: 15px;
-    border: none;
-    outline: none;
     cursor: pointer;
     padding: 10px 40px;
     font-size: 20px;
     font-weight: 600;
     color: #FFFFFF;
     margin-left: auto;
-}
-.logo.col-8{
-
 }
 .icon{
     display: flex;
@@ -62,4 +56,58 @@ a:hover{
     margin-right: 10px;
     float: left;
     height: 60px;
+}
+.mobile{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: linear-gradient(180deg, #FFCEF3 0%, #CABBE9 100%)no-repeat;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: auto;
+  right: 0;
+  background: linear-gradient(180deg, #CABBE9 0%, rgba(255, 255, 255, 0.5) 100%);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align:center;
+}
+
+.sidenav a {
+  font-size: 20px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+
+}
+.sidenav div a {
+  font-size: 20px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+  font-size: 36px;
+  margin-right: 10px;
+}
+.symbol{
+  cursor:pointer;
+  font-size: 1.5em;
+  border-color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 0.1rem solid #fff;
+  color: white;
+  padding: 7px 15px;
 }
