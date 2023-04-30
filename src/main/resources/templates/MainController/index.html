@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная страница|НОВЕЛЛЭНД</title>
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <link rel="stylesheet" th:href="@{/css/index-media.css}">
+    <link rel="stylesheet" th:href="@{/css/head.css}">
+    <link rel="stylesheet" th:href="@{/css/head-media.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
 <body>
-<div class="background">
+<div class="">
     <nav class="mobile">
         <div class="logo col-11">
             <img class="icon" th:src="@{/svg/logo.svg}" alt="">
-            <h2 class="">НОВЕЛЛЭНД</h2>
+            <a class="main-text">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-1">
         <div id="mySidenav" class="sidenav">
@@ -26,7 +26,7 @@
     <nav class="head">
         <div class="logo col-8">
             <img class="icon" th:src="@{/svg/logo.svg}" alt="">
-            <h2 class="">НОВЕЛЛЭНД</h2>
+            <a class="main-text" href="/">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-4">
             <div class="create"><a href="/create-novel">Создать</a></div>

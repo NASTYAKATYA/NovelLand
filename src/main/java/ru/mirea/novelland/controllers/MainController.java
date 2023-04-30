@@ -58,7 +58,7 @@ public class MainController {
             return ((User)userService.loadUserByUsername(authentication.getName())).getId();
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String index() {
         return "MainController/index";
     }
@@ -89,13 +89,11 @@ public class MainController {
         Image image = imageService.save(file, name);
         return "redirect:/image/" + image.getId();
     }
-
     @GetMapping("/create-novel")
     public String createNovel(Model model) {
         model.addAttribute("allGenres", iGenreRepository.findAll());
         return "MainController/create-novel";
     }
-
     @PostMapping("/create-novel")
     public String createNovel(@RequestParam String name, @RequestParam List<Integer> genres, @RequestParam String description, Authentication authentication) {
         var userId = getUserId(authentication);

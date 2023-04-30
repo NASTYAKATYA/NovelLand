@@ -8,7 +8,7 @@
     .mobile{
       display: flex;
     }
-    h2{
+    .main-text{
         font-size: 40px;
     }
     .icon{
@@ -26,7 +26,7 @@
     .mobile{
       display: flex;
     }
-    h2{
+    .main-text{
         font-size: 40px;
     }
     .icon{
@@ -44,7 +44,7 @@
     .mobile{
       display: none;
     }
-    h2{
+    .main-text{
         font-size: 45px;
     }
     .icon{
@@ -62,7 +62,7 @@
     .mobile{
       display: none;
     }
-    h2{
+    .main-text{
         font-size: 50px;
     }
     .icon{
