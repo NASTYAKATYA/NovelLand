@@ -13,7 +13,7 @@
     <title>Создание новеллы|НОВЕЛЛЭНД</title>
 </head>
 <body>
-<div class="">
+<div>
     <nav class="mobile">
         <div class="logo col-11">
             <img class="icon" th:src="@{/svg/logo.svg}" alt="">
@@ -46,8 +46,7 @@
         <input type="text" id="novelName" name="name" required>
         <label for="novelName">Название новеллы</label>
     </div>
-    <label class="genres" for="genres">Жанры</label>
-    <input type="text" style="display:none;" id="gCheck" required>
+    <label for="genres">Жанры</label>
     <select class="filter-multi-select" id="genres" name="genres" multiple required>
         <option th:each="genre : ${allGenres}" th:value="${genre.getId()}" th:text="${genre.getName()}">
             <input type="checkbox" name="${genre.getName()}" id="${genre.getId()}">
@@ -64,6 +63,5 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script th:src="@{/js/filter-multi-select-bundle.min.js}"></script>
 <script th:src="@{/js/menu.js}"></script>
-<script th:src="@{/js/select-genres.js}"></script>
 </body>
 </html>

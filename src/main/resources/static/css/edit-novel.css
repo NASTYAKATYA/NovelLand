@@ -1,8 +1,6 @@
-.container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+.form-container{
+  margin-left: 3%;
+  margin-bottom: 1%;
   }
 .form-box{
   width:fit-content;
@@ -10,11 +8,11 @@
   position: relative;
   border: 1.5px solid #CABBE9;
   border-radius: 30px;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin-top: 15px;
-  padding: 5%;
+  padding: 3%;
   font-size: 1.1em;
 }
 .prof{
@@ -41,7 +39,7 @@ margin-left:auto;
   border-radius: 15px;
   padding-left: 2%;
 }
-.create-novel{
+.btn-n{
   width:fit-content;
   position: relative;
   background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
@@ -49,11 +47,39 @@ margin-left:auto;
   border: none;
   outline: none;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
   color: #FFFFFF;
-  padding: 0 5%;
+  padding: 0 2%;
+  margin: auto;
+  margin-top: 1%;
 }
-label:after{
-  content: " *";
-  color: #e9573f;
+.buttons{
+
+     display: flex;
+     align-items: center;
+     margin: auto;
+}
+.hide-form a{
+color: #000;
+
+}
+.hide-form.cls{
+display:none;
+margin-top: 1%;
+}
+.hide-form.cls a{
+padding: 0;
+color: #787878;
+cursor: pointer;
+font-weight: normal;
+}
+.hide-form.opn{
+display:flex;
+margin-top: 1%;
+}
+.hide-form.opn a{
+padding: 0;
+color: #787878;
+cursor: pointer;
+font-weight: normal;
 }

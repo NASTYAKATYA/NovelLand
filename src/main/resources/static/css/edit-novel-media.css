@@ -15,9 +15,9 @@
     font-size: 0.875em;
     height: 35px;
     }
-    .create-novel{
+    .btn-n{
     height: 35px;
-    font-size: 1em;
+    font-size: 0.875em;
     }
     label{
      font-size: 0.875em;
@@ -50,9 +50,9 @@
     font-size: 0.875em;
     height: 35px;
     }
-    .create-novel{
+    .btn-n{
     height: 35px;
-    font-size: 1em;
+    font-size: 0.875em;
     }
      label{
      font-size: 0.875em;
@@ -85,9 +85,9 @@
     font-size: 1em;
     height: 40px;
     }
-    .create-novel{
+    .btn-n{
     height: 40px;
-    font-size: 1.25em;
+    font-size: 1em;
     }
     label{
     font-size: 1em;
@@ -120,9 +120,9 @@
     font-size: 1em;
     height: 40px;
     }
-    .create-novel{
+    .btn-n{
     height: 40px;
-    font-size: 1.25em;
+    font-size: 1em;
     }
     label{
     font-size: 1em;

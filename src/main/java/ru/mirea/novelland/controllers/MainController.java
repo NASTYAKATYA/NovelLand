@@ -229,7 +229,10 @@ public class MainController {
     }
 
     @PostMapping("/sign-up")
-    public String signCreate(HttpServletRequest request, @RequestParam String email, @RequestParam String username, @RequestParam String password, @RequestParam String repeatPassword, Model model) {
+    public String signCreate(HttpServletRequest request, @RequestParam String email,
+                             @RequestParam String username,
+                             @RequestParam String password,
+                             @RequestParam String repeatPassword, Model model) {
         if (userService.loadUserByEmail(email) != null) {
             model.addAttribute("error", "email_exists");
             return "MainController/sign-up";

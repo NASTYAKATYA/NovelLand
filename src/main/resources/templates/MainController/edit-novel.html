@@ -2,27 +2,79 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Edit novel</title>
+    <link rel="stylesheet" th:href="@{/css/edit-novel.css}"/>
+    <link rel="stylesheet" th:href="@{/css/edit-novel-media.css}"/>
+    <link rel="stylesheet" th:href="@{/css/head.css}">
+    <link rel="stylesheet" th:href="@{/css/head-media.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/maxcdn-bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/filter_multi_select.css}"/>
+    <title>Изменение новеллы|НОВЕЛЛЭНД</title>
 </head>
 <body>
+<div>
+    <nav class="mobile">
+        <div class="logo col-11">
+            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <a class="main-text" href="/">НОВЕЛЛЭНД</a>
+        </div>
+        <div class="list col-1">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">Профиль</a>
+                <a href="/sign-in">Выход</a>
+            </div>
+            <div class="symbol" onclick="openNav()">&#9776;</div>
+        </div>
+    </nav>
+    <nav class="head">
+        <div class="logo col-8">
+            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <a class="main-text" href="/">НОВЕЛЛЭНД</a>
+        </div>
+        <div class="list col-4">
+            <a class="prof" href="#">Профиль</a>
+            <a href="/sign-in">Выход</a>
+        </div>
+    </nav>
+</div>
+<div class="form-container">
+    <div id="myOpen" class="hide-form opn">
+        <a onclick="openForm()">Изменить новеллу</a>
+    </div>
+    <div id="myClose" class="hide-form cls">
+        <a onclick="closeForm()">Закрыть форму</a>
+    </div>
+<div class="form-box" id="myForm">
 <form action="" method="post">
-    <label for="novelName">Название новеллы:</label>
-    <input type="text" id="novelName" name="name" required th:value="${novel.getName()}">
-    <br><br>
-    <!--    https://demo.mobiscroll.com/javascript/select/multiple-select потом посмотреть-->
-    <label for="genres">Жанры:</label>
-    <select id="genres" name="genres" multiple required>
-        <option th:each="genre : ${allGenres}" th:value="${genre.getId()}" th:text="${genre.getName()}" th:selected="${novel.getGenres().contains(genre)}"></option>
+    <div class="inputbox">
+        <input type="text" id="novelName" name="name" required th:value="${novel.getName()}">
+        <label for="novelName">Название новеллы:</label>
+    </div>
+
+    <label for="genres">Жанры</label>
+    <select class="filter-multi-select" id="genres" name="genres" multiple required>
+        <option th:each="genre : ${allGenres}" th:value="${genre.getId()}" th:text="${genre.getName()}" th:selected="${novel.getGenres().contains(genre)}">
+            <input type="checkbox" name="${genre.getName()}" id="${genre.getId()}">
+        </option>
     </select>
-    <br><br>
-    <label for="novelDescription">Описание:</label>
-    <input type="text" id="novelDescription" name="description" required th:value="${novel.getDescription()}">
-    <br><br>
-    <input type="submit" name="save" value="Сохранить новеллу">
-    <input type="submit" name="delete" value="Удалить новеллу">
-    <input type="submit" name="add" value="Добавить сцену">
+
+    <div class="inputbox">
+        <input type="text" id="novelDescription" name="description" required th:value="${novel.getDescription()}">
+        <label for="novelDescription">Описание:</label>
+    </div>
+
+<div class="buttons">
+    <button class="btn-n save-novel col-5" type="submit" name="save">Сохранить</button>
+    <button class="btn-n delete-novel col-5" type="submit" name="delete">Удалить</button>
+</div>
 </form>
-<br><br>
+</div>
+
+    <form action="" method="post">
+        <button class="btn-n add-scene" type="submit" name="add">Добавить сцену</button>
+    </form>
+</div>
 <div id="novelDiv" style="border: 1px solid black; width: 100%; height: 500px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"></div>
 <script th:src="@{/js/go.js}"></script>
 <script th:src="@{/js/HyperlinkText.js}"></script>
@@ -31,185 +83,11 @@
     var nodeDataArray = JSON.parse('[[${nodeDataArrayJson}]]'.replace(/&quot;/g, '\"'));
     var linkDataArray = JSON.parse('[[${linkDataArrayJson}]]'.replace(/&quot;/g, '\"'));
     /*]]>*/
-    function init() {
-
-        // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
-        // For details, see https://gojs.net/latest/intro/buildingObjects.html
-        const $ = go.GraphObject.make;  // for conciseness in defining templates
-        novelDiv =
-            $(go.Diagram, "novelDiv",
-                {
-                    allowCopy: false,
-                    "draggingTool.dragsTree": true,
-                    layout:
-                        $(go.LayeredDigraphLayout,
-                            {}),
-                    "undoManager.isEnabled": true
-                });
-
-        // when the document is modified, add a "*" to the title and enable the "Save" button
-        novelDiv.addDiagramListener("Modified", e => {
-            var button = document.getElementById("SaveButton");
-            if (button) button.disabled = !novelDiv.isModified;
-            var idx = document.title.indexOf("*");
-            if (novelDiv.isModified) {
-                if (idx < 0) document.title += "*";
-            } else {
-                if (idx >= 0) document.title = document.title.slice(0, idx);
-            }
-        });
-
-        var pinkGrad = $(go.Brush, "Linear", { 0: "#df39fb", 1: "#bb39fb" });
-        var greengrad = $(go.Brush, "Linear", { 0: "#B1E2A5", 1: "#7AE060" });
-
-        // each action is represented by a shape and some text
-        var actionTemplate =
-            $(go.Panel, "Horizontal",
-                $(go.TextBlock,
-                    { font: "bold 10pt Verdana, sans-serif", margin:4 },
-                    new go.Binding("text", "id")
-                ),
-                $(go.TextBlock,
-                    { font: "10pt Verdana, sans-serif", margin:4 },
-                    new go.Binding("text")
-                )
-            );
-
-        // each regular Node has body consisting of a title followed by a collapsible list of actions,
-        // controlled by a PanelExpanderButton, with a TreeExpanderButton underneath the body
-        novelDiv.nodeTemplate =  // the default node template
-            $(go.Node, "Vertical",
-                new go.Binding("isTreeExpanded").makeTwoWay(),  // remember the expansion state for
-                new go.Binding("wasTreeExpanded").makeTwoWay(), //   when the model is re-loaded
-                { selectionObjectName: "BODY" },
-                // the main "BODY" consists of a RoundedRectangle surrounding nested Panels
-                $(go.Panel, "Auto",
-                    { name: "BODY" },
-                    $(go.Shape, "RoundedRectangle",
-                        { fill: pinkGrad, stroke: null }
-                    ),
-                    $(go.Panel, "Vertical",
-                        { margin: 3 },
-                        // the title
-                        $("HyperlinkText",
-                            node => window.location.href + node.data.url,
-                            node => node.data.title,
-                            { stretch: go.GraphObject.Horizontal,
-                                font: "bold 12pt Verdana, sans-serif" }
-                        ),
-                        // the optional list of actions
-                        $(go.Panel, "Vertical",
-                            { stretch: go.GraphObject.Horizontal, visible: false },  // not visible unless there is more than one action
-                            new go.Binding("visible", "choices", acts => (Array.isArray(acts) && acts.length > 0)),
-                            // headered by a label and a PanelExpanderButton inside a Table
-                            $(go.Panel, "Table",
-                                { stretch: go.GraphObject.Horizontal },
-                                $(go.TextBlock, "Варианты",
-                                    {
-                                        alignment: go.Spot.Left,
-                                        font: "10pt Verdana, sans-serif"
-                                    }
-                                ),
-                                $("PanelExpanderButton", "COLLAPSIBLE",  // name of the object to make visible or invisible
-                                    { column: 1, alignment: go.Spot.Right }
-                                )
-                            ), // end Table panel
-                            // with the list data bound in the Vertical Panel
-                            $(go.Panel, "Vertical",
-                                {
-                                    name: "COLLAPSIBLE",  // identify to the PanelExpanderButton
-                                    padding: 2,
-                                    stretch: go.GraphObject.Horizontal,  // take up whole available width
-                                    background: "#f3dcff",  // to distinguish from the node's body
-                                    defaultAlignment: go.Spot.Left,  // thus no need to specify alignment on each element
-                                    itemTemplate: actionTemplate  // the Panel created for each item in Panel.itemArray
-                                },
-                                new go.Binding("itemArray", "choices")  // bind Panel.itemArray to nodedata.actions
-                            )  // end action list Vertical Panel
-                        )  // end optional Vertical Panel
-                    )  // end outer Vertical Panel
-                )  // end "BODY"  Auto Panel
-            );
-
-        novelDiv.linkTemplate =
-            $(go.Link, go.Link.Orthogonal,
-                { deletable: false, corner: 10 },
-                $(go.Shape,
-                    { strokeWidth: 2 }
-                ),
-                $(go.TextBlock, go.Link.OrientUpright,
-                    {
-                        background: "white",
-                        visible: false,  // unless the binding sets it to true for a non-empty string
-                        segmentOrientation: go.Link.None
-                    },
-                    new go.Binding("text", "choice"),
-                    // hide empty string;
-                    // if the "answer" property is undefined, visible is false due to above default setting
-                    new go.Binding("visible", "choice", a => a ? true : false)
-                )
-            );
-
-
-
-        // var nodeDataArray = [
-        //     {
-        //         key: 0, title: "Start",
-        //         choices: [
-        //             { id: "1", text: "Выбор 1"}
-        //         ]
-        //     },
-        //     {
-        //         key: 1, title: "Сцена 1",
-        //         choices: [
-        //             { id: 1, text: "Выбор 1"},
-        //             { id: 2, text: "Выбор 2" },
-        //             { id: 3, text: "Выбор 3" }
-        //         ]
-        //     },
-        //     {
-        //         key: 2, title: "Сцена 2",
-        //         choices: [
-        //             { id: 1, text: "Выбор 1"}
-        //         ]
-        //     },
-        //     {
-        //         key: 3, title: "Сцена 3",
-        //         choices: [
-        //             { id: 1, text: "Выбор 1"}
-        //         ]
-        //     },
-        //     {
-        //         key: 4, title: "Сцена 4",
-        //         choices: [
-        //             { id: 1, text: "Выбор 1"}
-        //         ]
-        //     },
-        //     {
-        //         key: 5, title: "Конец"
-        //     }
-        // ];
-        // var linkDataArray = [
-        //     { from: 0, to: 1, choice: 1 },
-        //     { from: 1, to: 2, choice: 1 },
-        //     { from: 1, to: 3, choice: 2 },
-        //     { from: 1, to: 4, choice: 3 },
-        //     { from: 2, to: 5, choice: 1 },
-        //     { from: 3, to: 5, choice: 1 },
-        //     { from: 4, to: 5, choice: 1 }
-        // ];
-
-        // create the Model with the above data, and assign to the Diagram
-        novelDiv.model = new go.GraphLinksModel(
-            {
-                copiesArrays: true,
-                copiesArrayObjects: true,
-                nodeDataArray: nodeDataArray,
-                linkDataArray: linkDataArray
-            });
-
-    }
-    window.addEventListener('DOMContentLoaded', init);
 </script>
+<script th:src="@{/js/generateDiagram.js}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script th:src="@{/js/filter-multi-select-bundle.min.js}"></script>
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/hide-form.js}"></script>
 </body>
 </html>
