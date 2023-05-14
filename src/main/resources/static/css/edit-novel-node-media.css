@@ -1,0 +1,174 @@
+@media (min-width: 576px) {
+    .container {
+    max-width: 540px;
+    }
+    .form-box{
+    font-size: 1em;
+    }
+    .inputbox{
+    width: 265px;
+    }
+    .inputbox label{
+    font-size: 1em;
+    }
+    .inputbox input{
+    font-size: 0.875em;
+    height: 35px;
+    }
+    .value-input{
+    font-size: 0.875em;
+    height: 35px;
+    }
+    .child-select{
+    font-size: 0.75em;
+     height: 30px;
+    }
+    .save-btn{
+    height: 35px;
+    font-size: 0.875em;
+    }
+    label{
+     font-size: 0.875em;
+     }
+      .inputbox label{
+      font-size: 0.875em;
+      }
+    .filter-multi-select > .viewbar {
+    font-size: 0.875em
+    }
+    .filter-multi-select > .viewbar > .selected-items > .item {
+        height: 1.25em;
+    }
+  .form-control {
+      line-height: 1.5;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+    max-width: 720px;
+    }
+    .inputbox{
+    width: 280px;
+    }
+    .inputbox label{
+    font-size: 1em;
+    }
+    .inputbox input{
+    font-size: 0.875em;
+    height: 35px;
+    }
+    .value-input{
+    font-size: 0.875em;
+    height: 35px;
+    }
+    .child-select{
+    font-size: 0.75em;
+    height: 30px;
+    }
+    .save-btn{
+    height: 35px;
+    font-size: 0.875em;
+    }
+     label{
+     font-size: 0.875em;
+     }
+     .inputbox label{
+     font-size: 0.875em;
+     }
+    .filter-multi-select > .viewbar {
+    font-size: 0.875em
+    }
+    .filter-multi-select > .viewbar > .selected-items > .item {
+        height: 1.25em;
+    }
+  .form-control {
+      line-height: 1.5;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+    max-width: 960px;
+    }
+    .inputbox{
+    width: 295px;
+    }
+    .inputbox label{
+    font-size: 1.1em;
+    }
+    .inputbox input{
+    font-size: 1em;
+    height: 40px;
+    }
+    .value-input{
+    font-size: 1em;
+    height: 40px;
+    }
+    .child-select{
+    font-size: 0.875em;
+    height: 35px;
+    }
+    .save-btn{
+    height: 40px;
+    font-size: 1em;
+    }
+    label{
+    font-size: 1em;
+    }
+    .inputbox label{
+    font-size: 1em;
+    }
+    .filter-multi-select > .viewbar {
+    font-size: 1em
+    }
+    .filter-multi-select > .viewbar > .selected-items > .item {
+        height: 1.5em;
+    }
+  .form-control {
+      line-height: 1.75;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+    max-width: 1140px;
+    }
+    .inputbox{
+    width: 310px;
+    }
+    .inputbox label{
+    font-size: 1.1em;
+    }
+    .inputbox input{
+    font-size: 1em;
+    height: 40px;
+    }
+    .value-input{
+    font-size: 1em;
+    height: 40px;
+    }
+    .child-select{
+    font-size: 0.875em;
+    height: 35px;
+    }
+    .save-btn{
+    height: 40px;
+    font-size: 1em;
+    }
+    label{
+    font-size: 1em;
+    }
+    .inputbox label{
+    font-size: 1em;
+    }
+    .filter-multi-select > .viewbar {
+    font-size: 1em
+    }
+    .filter-multi-select > .viewbar > .selected-items > .item {
+        height: 1.5em;
+    }
+    .form-control {
+      line-height: 1.75;
+    }
+}

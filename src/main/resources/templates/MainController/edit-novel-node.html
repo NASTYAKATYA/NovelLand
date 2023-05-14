@@ -1,37 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Edit novel node</title>
+  <link rel="stylesheet" th:href="@{/css/edit-novel-node.css}"/>
+  <link rel="stylesheet" th:href="@{/css/edit-novel-node-media.css}"/>
+  <link rel="stylesheet" th:href="@{/css/head.css}">
+  <link rel="stylesheet" th:href="@{/css/head-media.css}">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <title>Изменение сцены|НОВЕЛЛЭНД</title>
 </head>
 <body>
+<div>
+  <nav class="mobile">
+    <div class="logo col-11">
+      <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+      <a class="main-text" href="/">НОВЕЛЛЭНД</a>
+    </div>
+    <div class="list col-1">
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Профиль</a>
+        <a href="/sign-in">Выход</a>
+      </div>
+      <div class="symbol" onclick="openNav()">&#9776;</div>
+    </div>
+  </nav>
+  <nav class="head">
+    <div class="logo col-8">
+      <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+      <a class="main-text" href="/">НОВЕЛЛЭНД</a>
+    </div>
+    <div class="list col-4">
+      <a class="prof" href="#">Профиль</a>
+      <a href="/sign-in">Выход</a>
+    </div>
+  </nav>
+</div>
+<div class="container">
+<div class="form-box" id="myForm">
 <form action="" method="post" enctype="multipart/form-data">
-  <label for="novelName">Название сцены:</label>
-  <input type="text" id="novelName" name="name" required th:value="${novelNode.getName()}">
-  <br><br>
-  <label for="content">Контент сцены:</label>
-  <input type="text" id="content" name="content" required th:value="${novelNode.getContent()}">
-  <br><br>
+  <div class="inputbox">
+    <label for="novelName">Название сцены</label>
+    <input type="text" id="novelName" name="name" required th:value="${novelNode.getName()}">
+  </div>
+
+  <div class="inputbox">
+    <label for="content">Контент сцены</label>
+    <input type="text" id="content" name="content" required th:value="${novelNode.getContent()}">
+  </div>
+
+
   <div id="options">
     <div id="addMoreOption" style="cursor: pointer">Добавить выбор</div>
   </div>
-  <br><br>
-  <div>
-    <img th:if="${novelNode.backgroundImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.backgroundImage.getId()}" alt="bi" style="height: 20px; width: 20px;">
-    <img th:if="${novelNode.backgroundImage == null}" th:src="@{/img/default_background.png}" alt="backgroundImage" style="height: 20px; width: 20px;">
-    <label for="backgroundImage">Фоновая картинка: </label>
-    <input type="file" id="backgroundImage" name="backgroundImage" accept="image/png, image/jpeg">
+
+  <label for="backgroundImage">Фоновая картинка</label>
+    <div class="inputbox-img">
+      <input type="file" id="backgroundImage" name="backgroundImage" accept="image/png, image/jpeg">
+    <img th:if="${novelNode.backgroundImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.backgroundImage.getId()}" alt="bi">
+    <img th:if="${novelNode.backgroundImage == null}" th:src="@{/img/default_background.png}" alt="backgroundImage">
   </div>
-  <br><br>
-  <div>
-    <img th:if="${novelNode.characterImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.characterImage.getId()}" alt="ci" style="height: 20px; width: 20px;">
-    <label for="characterImage">Картинка персонажа: </label>
-    <input type="file" id="characterImage" name="characterImage" accept="image/png, image/jpeg">
-  </div>
-  <br><br>
-  <input type="submit" name="save" value="Сохранить сцену">
+
+    <label for="characterImage">Картинка персонажа</label>
+    <div class="inputbox-img">
+      <input type="file" id="characterImage" name="characterImage" accept="image/png, image/jpeg">
+      <img th:if="${novelNode.characterImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.characterImage.getId()}" alt="ci">
+    </div>
+
+
+  <input class="save-btn" type="submit" name="save" value="Сохранить сцену">
   <input th:if="${!novelNode.isStart()}" type="submit" name="delete" value="Удалить сцену">
 </form>
+</div>
+</div>
+<script th:src="@{/js/menu.js}"></script>
 <script>
   /*<![CDATA[*/
   let optionsDiv = document.getElementById('options');
@@ -59,15 +101,24 @@
 
   function createOptionDiv(optionId, optionValue) {
     let optionDiv = document.createElement('div');
+    optionDiv.classList.add("option-div");
+    let selectDiv = document.createElement('div');
+    selectDiv.classList.add("select-div");
     let deleteDiv = document.createElement('div');
-    let hiddenInput = document.createElement('input');
+    deleteDiv.classList.add("delete-div");
     let valueInput = document.createElement('input');
-    let childLabel = document.createElement('label');
+    valueInput.classList.add("value-input");
     let childSelect = document.createElement('select');
+    childSelect.classList.add("child-select");
+    let hiddenInput = document.createElement('input');
+    childSelect.setAttribute('id','child-selectId');
+    let childLabel = document.createElement('label');
+    childLabel.classList.add("child-label");
+    childLabel.htmlFor = 'child-selectId';
 
     deleteDiv.onclick = removeOptionDiv;
     deleteDiv.style.cssText = 'cursor: pointer;';
-    deleteDiv.textContent = 'Убрать выбор'
+    deleteDiv.textContent = 'Убрать выбор';
 
     if (optionId != null) {
       hiddenInput.type = 'hidden';
@@ -80,7 +131,7 @@
     valueInput.value=optionValue;
     valueInput.required = true;
 
-    childLabel.textContent = 'Выбрать дочерний сценарий:';
+    childLabel.textContent = 'Выбор следующей сцены';
 
     childSelect.name = 'childrenIds[]';
 
@@ -101,13 +152,14 @@
       }
     }
 
+    selectDiv.appendChild(childLabel);
+    selectDiv.appendChild(childSelect);
     optionDiv.appendChild(deleteDiv);
     if (optionId != null) {
       optionDiv.appendChild(hiddenInput);
     }
     optionDiv.appendChild(valueInput);
-    optionDiv.appendChild(childLabel);
-    optionDiv.appendChild(childSelect);
+    optionDiv.appendChild(selectDiv);
     return optionDiv;
   }
 

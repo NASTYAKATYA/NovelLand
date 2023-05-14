@@ -1,0 +1,115 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  }
+.form-box{
+  width:fit-content;
+  height: fit-content;
+  position: relative;
+  border: 1.5px solid #CABBE9;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  padding: 5%;
+  font-size: 1.1em;
+}
+.prof{
+margin-left:auto;
+}
+.inputbox{
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.inputbox label{
+  position: absolute;
+  top: -30%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #181818;
+  pointer-events: none;
+}
+.inputbox input{
+  width:500px;
+  outline: none;
+  background: #FDFDFD;
+  border: 1px solid #CABBE9;
+  border-radius: 15px;
+  padding-left: 2%;
+}
+.create-novel{
+  width:fit-content;
+  position: relative;
+  background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #FFFFFF;
+  padding: 0 5%;
+}
+
+.option-div{
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.delete-div{
+  margin-bottom: 15px;
+}
+
+.value-input{
+  width:500px;
+  outline: none;
+  background: #FDFDFD;
+  border: 1px solid #CABBE9;
+  border-radius: 15px;
+  padding-left: 2%;
+}
+
+.child-label{
+  top: -30%;
+  left: 5px;
+  color: #181818;
+  pointer-events: none;
+}
+.select-div{
+margin-top: 15px;
+align-items: center;
+display: flex;
+}
+.child-select{
+    width: 300px;
+    outline: none;
+    background: #FDFDFD;
+    border: 1px solid #CABBE9;
+    padding-left: 2%;
+    margin-left: auto;
+}
+.inputbox-img{
+display:flex;
+align-items: center;
+margin-bottom: 15px;
+}
+.inputbox-img img{
+height:45px;
+margin-left: auto;
+}
+.save-btn{
+  width:fit-content;
+  position: relative;
+  background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #FFFFFF;
+  padding: 0 5%;
+}
