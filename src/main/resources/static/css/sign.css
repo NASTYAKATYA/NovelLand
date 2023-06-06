@@ -104,7 +104,7 @@ h2{
 button{
   position: relative;
   width: 100%;
-  background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
+  background: #CABBE9;
   border-radius: 15px;
   border: none;
   outline: none;

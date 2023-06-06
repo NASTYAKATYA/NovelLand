@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,10 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.mirea.novelland.core.Tuple2;
-import ru.mirea.novelland.models.Image;
-import ru.mirea.novelland.models.NovelNode;
-import ru.mirea.novelland.models.Option;
-import ru.mirea.novelland.models.User;
+import ru.mirea.novelland.models.*;
 import ru.mirea.novelland.repositories.IGenreRepository;
 import ru.mirea.novelland.repositories.IOptionRepository;
 import ru.mirea.novelland.services.*;
@@ -59,7 +57,8 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("novels", novelService.getAllNovels());
         return "MainController/index";
     }
 
@@ -94,12 +93,33 @@ public class MainController {
         model.addAttribute("allGenres", iGenreRepository.findAll());
         return "MainController/create-novel";
     }
+    @Transactional
     @PostMapping("/create-novel")
-    public String createNovel(@RequestParam String name, @RequestParam List<Integer> genres, @RequestParam String description, Authentication authentication) {
+    public String createNovel(@RequestParam String name, @RequestParam List<Integer> genres, @RequestParam String description, @RequestParam MultipartFile previewImage,Authentication authentication) throws IOException {
         var userId = getUserId(authentication);
-        var novel = novelService.save(name, description, genres, userId);
+        var novel = novelService.save(name, description, genres, userId, previewImage);
         novelNodeService.createStart(novel.getId());
         return "redirect:/edit-novel/" + novel.getId();
+    }
+    @GetMapping("/novel/{novelId}/{novelNodeId}")
+    public String novelPlay(@PathVariable int novelId, @PathVariable int novelNodeId,Authentication authentication, Model model) throws JsonProcessingException {
+        if (!novelAuthorizationCheck(authentication, novelId)) {
+            // TODO redirect to 401
+            return "redirect:/error?code=401";
+        }
+        var novel = novelService.get(novelId);
+        var childrenNovelNodes = novelNodeService.getAllByNovel(novel);
+        var novelNode = novelNodeService.get(novelNodeId);
+        var filtered = childrenNovelNodes.stream().filter(nn -> nn.getId() != novelNode.getId()).toList();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String childrenNovelNodesJson = objectMapper.writeValueAsString(filtered);
+        model.addAttribute("childrenNovelNodesJson", childrenNovelNodesJson);
+        model.addAttribute("novel", novel);
+        model.addAttribute("novelNode", novelNode);
+        model.addAttribute("options", novelService.getAllNovels());
+        var selectedChildrenIds = novelNode.getOptions().stream().filter(o -> o.getChildrenNovelNode() != null).map(o -> new Tuple2(o.getId(), o.getChildrenNovelNode().getId())).toList();
+        model.addAttribute("selectedChildrenIdsJson", objectMapper.writeValueAsString(selectedChildrenIds));
+        return "MainController/novel";
     }
     @GetMapping("/edit-novel/{novelId}")
     public String editNovel(@PathVariable int novelId, Authentication authentication, Model model) {
@@ -116,8 +136,9 @@ public class MainController {
         model.addAttribute("linkDataArrayJson", gson.toJson(diagramData.second));
         return "MainController/edit-novel";
     }
+    @Transactional
     @PostMapping(value = "/edit-novel/{novelId}", params = "save")
-    public String editNovel(@PathVariable int novelId, @RequestParam String name, @RequestParam List<Integer> genres, @RequestParam String description, Authentication authentication) {
+    public String editNovel(@PathVariable int novelId, @RequestParam String name, @RequestParam List<Integer> genres, @RequestParam String description, @RequestParam MultipartFile previewImage,Authentication authentication) throws IOException {
         if (!novelAuthorizationCheck(authentication, novelId)) {
             // TODO redirect to 401
             return "redirect:/error?code=401";
@@ -125,7 +146,7 @@ public class MainController {
         var novel = novelService.get(novelId);
         novel.setName(name);
         novel.setDescription(description);
-        novelService.save(novel, genres);
+        novelService.save(novel, genres, previewImage);
         return  "redirect:/edit-novel/" + novelId;
     }
     @PostMapping(value = "/edit-novel/{novelId}", params = "delete")
@@ -204,7 +225,9 @@ public class MainController {
     }
 
     @GetMapping("/novel/{novelId}")
-    public String novel(@PathVariable int novelId) {
+    public String novel(@PathVariable int novelId, Model model) {
+       Novel novel = novelService.getNovel(novelId);
+       model.addAttribute("novel", novel);
         return "MainController/novel";
     }
 
@@ -271,4 +294,5 @@ public class MainController {
             request.login(username, password);
         } catch (ServletException e) { }
     }
+
 }

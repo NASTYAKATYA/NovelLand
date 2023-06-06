@@ -16,7 +16,7 @@
 <div>
     <nav class="mobile">
         <div class="logo col-11">
-            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
             <a class="main-text" href="/">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-1">
@@ -30,7 +30,7 @@
     </nav>
     <nav class="head">
         <div class="logo col-8">
-            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
             <a class="main-text" href="/">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-4">
@@ -41,12 +41,12 @@
 </div>
 <div class="container">
 <div class="form-box">
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <div class="inputbox">
         <input type="text" id="novelName" name="name" required>
-        <label for="novelName">Название новеллы</label>
+        <label class="required-label" for="novelName">Название новеллы</label>
     </div>
-    <label for="genres">Жанры</label>
+    <label class="required-label" for="genres">Жанры</label>
     <select class="filter-multi-select" id="genres" name="genres" multiple required>
         <option th:each="genre : ${allGenres}" th:value="${genre.getId()}" th:text="${genre.getName()}">
             <input type="checkbox" name="${genre.getName()}" id="${genre.getId()}">
@@ -54,8 +54,15 @@
     </select>
     <div class="inputbox">
         <input type="text" id="novelDescription" name="description" required>
-        <label for="novelDescription">Описание</label>
+        <label class="required-label" for="novelDescription">Описание</label>
     </div>
+
+    <label for="previewImage">Обложка</label>
+    <div class="inputbox-img">
+        <input type="file" id="previewImage" name="previewImage" accept="image/png, image/jpeg">
+        <img th:src="@{/img/default_preview.png}" alt="previewImage">
+    </div>
+
     <button class="create-novel" type="submit">Создать новеллу</button>
 </form>
 </div>

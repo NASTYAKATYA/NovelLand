@@ -30,4 +30,7 @@ public class Novel {
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "preview_image_id", referencedColumnName = "id")
+    private Image previewImage;
 }

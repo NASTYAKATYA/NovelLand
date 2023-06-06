@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная страница|НОВЕЛЛЭНД</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/index-media.css}">
     <link rel="stylesheet" th:href="@{/css/head.css}">
     <link rel="stylesheet" th:href="@{/css/head-media.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
@@ -11,7 +13,7 @@
 <div class="">
     <nav class="mobile">
         <div class="logo col-11">
-            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
             <a class="main-text">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-1">
@@ -25,7 +27,7 @@
     </nav>
     <nav class="head">
         <div class="logo col-8">
-            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
             <a class="main-text" href="/">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-4">
@@ -33,6 +35,22 @@
             <a href="/sign-in">Выход</a>
         </div>
     </nav>
+</div>
+<div class="container novels">
+    <div class="row">
+    <div class="card col-3" th:each="novel:${novels}">
+        <img th:if="${novel.previewImage != null}" th:src="'http://localhost:8080/image/' + ${novel.previewImage.getId()}" alt="pi">
+        <img th:if="${novel.previewImage == null}" th:src="@{/img/default_preview.png}" alt="previewImage">
+        <div class="card-body">
+            <a class="card-name" th:text="${novel.getName()}">Name</a>
+            <p class="card-genres" th:each="genre : ${novel.getGenres()}" th:text="${genre.getName()}">Genres</p>
+            <a th:href="'/novel/'+${novel.getId()}+'/1'" class="play-button">Играть</a>
+        </div>
+    </div>
+        <div class="card-change col-3" th:each="novel:${novels}">
+        <a th:href="'/edit-novel/'+${novel.getId()}" class="change-link">Внести изменения</a>
+        </div>
+    </div>
 </div>
 <script th:src="@{/js/menu.js}"></script>
 </body>

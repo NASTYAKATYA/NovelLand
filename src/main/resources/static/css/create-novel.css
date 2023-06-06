@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   }
 .form-box{
   width:fit-content;
@@ -44,7 +43,7 @@ margin-left:auto;
 .create-novel{
   width:fit-content;
   position: relative;
-  background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
+  background: #CABBE9;
   border-radius: 15px;
   border: none;
   outline: none;
@@ -53,7 +52,17 @@ margin-left:auto;
   color: #FFFFFF;
   padding: 0 5%;
 }
-label:after{
+.required-label:after{
   content: " *";
   color: #e9573f;
+}
+
+.inputbox-img{
+display:flex;
+align-items: center;
+margin-bottom: 15px;
+}
+.inputbox-img img{
+height:45px;
+margin-left: auto;
 }

@@ -13,7 +13,7 @@
 <div>
   <nav class="mobile">
     <div class="logo col-11">
-      <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+      <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
       <a class="main-text" href="/">НОВЕЛЛЭНД</a>
     </div>
     <div class="list col-1">
@@ -27,7 +27,7 @@
   </nav>
   <nav class="head">
     <div class="logo col-8">
-      <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+      <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
       <a class="main-text" href="/">НОВЕЛЛЭНД</a>
     </div>
     <div class="list col-4">
@@ -69,7 +69,7 @@
 
 
   <input class="save-btn" type="submit" name="save" value="Сохранить сцену">
-  <input th:if="${!novelNode.isStart()}" type="submit" name="delete" value="Удалить сцену">
+  <input class="save-btn" th:if="${!novelNode.isStart()}" type="submit" name="delete" value="Удалить сцену">
 </form>
 </div>
 </div>

@@ -15,7 +15,7 @@
 <div>
     <nav class="mobile">
         <div class="logo col-11">
-            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
             <a class="main-text" href="/">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-1">
@@ -29,7 +29,7 @@
     </nav>
     <nav class="head">
         <div class="logo col-8">
-            <img class="icon" th:src="@{/svg/logo.svg}" alt="">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
             <a class="main-text" href="/">НОВЕЛЛЭНД</a>
         </div>
         <div class="list col-4">
@@ -40,13 +40,13 @@
 </div>
 <div class="form-container">
     <div id="myOpen" class="hide-form opn">
-        <a onclick="openForm()">Изменить новеллу</a>
+        <a class="change-novel" onclick="openForm()">Изменить новеллу &#10064;</a>
     </div>
     <div id="myClose" class="hide-form cls">
-        <a onclick="closeForm()">Закрыть форму</a>
+        <a class="change-novel" onclick="closeForm()">Закрыть форму &#9866;</a>
     </div>
 <div class="form-box" id="myForm">
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <div class="inputbox">
         <input type="text" id="novelName" name="name" required th:value="${novel.getName()}">
         <label for="novelName">Название новеллы:</label>
@@ -64,15 +64,22 @@
         <label for="novelDescription">Описание:</label>
     </div>
 
+    <label for="previewImage">Обложка</label>
+    <div class="inputbox-img">
+        <input type="file" id="previewImage" name="previewImage" accept="image/png, image/jpeg">
+        <img th:if="${novel.previewImage != null}" th:src="'http://localhost:8080/image/' + ${novel.previewImage.getId()}" alt="pi">
+        <img th:if="${novel.previewImage == null}" th:src="@{/img/default_preview.png}" alt="previewImage">
+    </div>
+
 <div class="buttons">
-    <button class="btn-n save-novel col-5" type="submit" name="save">Сохранить</button>
-    <button class="btn-n delete-novel col-5" type="submit" name="delete">Удалить</button>
+    <button class="btn-n" type="submit" name="save">Сохранить</button>
+    <button class="btn-n" type="submit" name="delete">Удалить</button>
 </div>
 </form>
 </div>
 
     <form action="" method="post">
-        <button class="btn-n add-scene" type="submit" name="add">Добавить сцену</button>
+        <button class="add-scene" type="submit" name="add">&#9547; Добавить сцену</button>
     </form>
 </div>
 <div id="novelDiv" style="border: 1px solid black; width: 100%; height: 500px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"></div>

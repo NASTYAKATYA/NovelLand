@@ -1,0 +1,62 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+.card{
+  width:fit-content;
+  height: fit-content;
+  position: relative;
+  border: 1.5px solid #CABBE9;
+  margin: 20px 46.5px 0;
+  padding: 1.25% 2.5%;
+  font-size: 1.1em;
+}
+.card img{
+  width:100%;
+  transform: translateX(0%);
+}
+.card-body{
+  width:100%;
+  transform: translateX(0%);
+}
+.card-body a{
+font-size: 20px;
+}
+.card-name{
+color: #CABBE9;
+padding: 0;
+font-weight: bold;
+}
+.card-genres{
+color: #787878;
+padding: 0;
+font-weight: normal;
+}
+.play-button{
+font-weight: normal;
+position: relative;
+background: #CABBE9;
+border-radius: 15px;
+border: none;
+outline: none;
+cursor: pointer;
+color: #FFFFFF;
+padding: 1% 5%;
+margin-left: 65%;
+}
+.change-link{
+color: #C3C3C3;
+padding: 0;
+font-weight: normal;
+font-size: 16px;
+margin-left: 22.5%;
+}
+.card-change{
+  width:fit-content;
+  height: fit-content;
+  position: relative;
+  margin: 0 46.5px 0;
+  padding: 0 2.5%;
+  font-size: 1.1em;
+}

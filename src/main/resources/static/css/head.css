@@ -40,7 +40,7 @@ a{
     font-size: 20px;
 }
 .create{
-    background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
+    border: 0.1rem solid #fff;
     border-radius: 15px;
     cursor: pointer;
     padding: 10px 40px;
@@ -77,6 +77,7 @@ a{
   transition: 0.5s;
   padding-top: 60px;
   text-align:center;
+  z-index:1000;
 }
 
 .sidenav a {

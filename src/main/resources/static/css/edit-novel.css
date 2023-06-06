@@ -40,19 +40,16 @@ margin-left:auto;
   padding-left: 2%;
 }
 .btn-n{
-  width:fit-content;
   position: relative;
-  background: linear-gradient(180deg, #A1EAFB 0%, #CABBE9 100%);
   border-radius: 15px;
   border: none;
   outline: none;
   cursor: pointer;
-  font-weight: 500;
-  color: #FFFFFF;
-  padding: 0 2%;
-  margin: auto;
+  color: #787878;
   margin-top: 1%;
+  margin-right: 2%;
 }
+
 .buttons{
 
      display: flex;
@@ -83,3 +80,27 @@ color: #787878;
 cursor: pointer;
 font-weight: normal;
 }
+.inputbox-img{
+display:flex;
+align-items: center;
+margin-bottom: 15px;
+}
+.inputbox-img img{
+height:45px;
+margin-left: auto;
+}
+.add-scene{
+width:fit-content;
+ position: relative;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: 0 2%;
+  margin: auto;
+  margin-top: 1%;
+padding: 0;
+color: #787878;
+cursor: pointer;
+font-weight: normal;}

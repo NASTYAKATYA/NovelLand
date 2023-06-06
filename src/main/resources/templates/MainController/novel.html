@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Игра|НОВЕЛЛЭНД</title>
+    <link rel="stylesheet" th:href="@{/css/novel.css}">
+    <link rel="stylesheet" th:href="@{/css/novel-media.css}">
+    <link rel="stylesheet" th:href="@{/css/head.css}">
+    <link rel="stylesheet" th:href="@{/css/head-media.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
 <body>
-
+<div>
+    <nav class="mobile">
+        <div class="logo col-11">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
+            <a class="main-text" href="/">НОВЕЛЛЭНД</a>
+        </div>
+        <div class="list col-1">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">Профиль</a>
+                <a href="/sign-in">Выход</a>
+            </div>
+            <div class="symbol" onclick="openNav()">&#9776;</div>
+        </div>
+    </nav>
+    <nav class="head">
+        <div class="logo col-8">
+            <img class="icon" th:src="@{/svg/logo2.svg}" alt="">
+            <a class="main-text" href="/">НОВЕЛЛЭНД</a>
+        </div>
+        <div class="list col-4">
+            <a class="prof" href="#">Профиль</a>
+            <a href="/sign-in">Выход</a>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="play-novel">
+        <img class="back-img" th:if="${novelNode.backgroundImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.backgroundImage.getId()}" alt="bi">
+        <img class="back-img" th:if="${novelNode.backgroundImage == null}" th:src="@{/img/default_background.png}" alt="backgroundImage">
+        <img class="char-img" th:if="${novelNode.characterImage != null}" th:src="'http://localhost:8080/image/' + ${novelNode.characterImage.getId()}" alt="ci">
+        <p class="options-box row" th:each="option : ${novelNode.getOptions()}" th:text="${option.getValue()}"></p>
+        <div class="content-box">
+            <a class="content" th:text="${novelNode.getContent()}"></a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/menu.js}"></script>
 </body>
 </html>
